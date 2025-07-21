@@ -6,7 +6,7 @@
   height: 100%;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.1s ease;
 }
 
 .bg-container.loaded {
@@ -20,11 +20,11 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-color: #4c545f; /* Запасной цвет */
+  background-color: #4c545f;
 }
 
 .bg-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800 bg-opacity-80 */
+  background-color: rgba(31, 41, 55, 0.8);
 }
