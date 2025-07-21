@@ -1,12 +1,29 @@
-export const AboutUs: React.FC = () => {
+import { useState, useEffect } from 'react';
+import aboutUsBg from '/about_us_back.png';
+import './AboutUs.css';
+import { Header } from '../../header';
+
+export const AboutUs: React.FC<{ onLoad?: () => void }> = ({ onLoad }) => {
+  const [bgLoaded, setBgLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = aboutUsBg;
+    img.onload = () => {
+      setBgLoaded(true);
+      onLoad?.();
+    };
+  }, [onLoad]);
+
   return (
     <div className='w-full relative' style={{ marginTop: '72px' }}>
-      <div className='absolute inset-0 z-0 w-full h-full overflow-hidden'>
-        <div
-          className='absolute inset-0 w-full h-full bg-cover bg-center'
-          style={{ backgroundImage: "url('/about_us_back.png')" }}
-        ></div>
-        <div className='absolute inset-0 bg-gray-800 bg-opacity-80 w-full h-full'></div>
+      {/* Шапка с анимацией появления */}
+      <div className={`transition-opacity duration-500 ${bgLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <Header />
+      </div>
+      <div className={`bg-container ${bgLoaded ? 'loaded' : ''}`}>
+        <div className='bg-image' style={{ backgroundImage: `url(${aboutUsBg})` }}></div>
+        <div className='bg-overlay'></div>
       </div>
 
       <section
@@ -26,8 +43,16 @@ export const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        <div className='flex items-center justify-center p-6 md:p-8'>
-          <img src='/about_us_photo.jpg' alt="Фото 'О нас'" />
+        <div
+          className={`flex items-center justify-center p-6 md:p-8 transition-opacity duration-500 ${
+            bgLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src='./about_us_photo.jpg'
+            alt="Фото 'О нас'"
+            className='transition-opacity duration-300'
+          />
         </div>
       </section>
     </div>

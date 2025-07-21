@@ -1,0 +1,30 @@
+.bg-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.bg-container.loaded {
+  opacity: 1;
+}
+
+.bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: #4c545f; /* Запасной цвет */
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800 bg-opacity-80 */
+}

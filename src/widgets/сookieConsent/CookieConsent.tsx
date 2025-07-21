@@ -1,24 +1,26 @@
 import { useState, useEffect } from 'react';
 
-export const CookieConsent = () => {
+export const CookieConsent: React.FC<{ contentLoaded: boolean }> = ({ contentLoaded }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [renderCookieConsent, setRenderCookieConsent] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsVisible(true);
-    }, 300);
-  }, []);
+    if (contentLoaded) {
+      setTimeout(() => {
+        setIsVisible(true);
+      }, 1000);
+    }
+  }, [contentLoaded]);
 
   const handleAccept = () => {
     setIsClosing(true);
-    setTimeout(() => setIsVisible(false), 300);
+    setTimeout(() => setIsVisible(false), 1000);
   };
 
   useEffect(() => {
     if (isClosing) {
-      setTimeout(() => setRenderCookieConsent(false), 300);
+      setTimeout(() => setRenderCookieConsent(false), 500);
     }
   }, [isClosing]);
 
